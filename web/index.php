@@ -97,7 +97,7 @@ $app->match('/send', function () use ($app) {
   
   $serial->sendMessage( join(' ', $msg )  );
   
-  echo $serial->readPort();
+//  echo $serial->readPort();
   
   $serial->deviceClose();
 
