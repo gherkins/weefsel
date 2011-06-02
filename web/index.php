@@ -102,7 +102,7 @@ $app->match('/send', function () use ($app) {
 //  echo '<br /><br />loom says: <br />';
 //  echo $serial->readPort();
   
-  $serial->deviceClose();
+//  $serial->deviceClose();
 
 });
 
