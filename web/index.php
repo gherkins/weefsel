@@ -74,7 +74,7 @@ $app->match('/send', function () use ($app) {
 //  define('SERIALPORT','/dev/tty.usbserial-A100eH8F');
   define('SERIALPORT','/dev/ttyACM0');
   
-  echo 'sending to: '.SERIALPORT.'<br />';
+//  echo 'port: '.SERIALPORT.'<br />';
   
   $serial = new phpSerial();
   
@@ -88,14 +88,16 @@ $app->match('/send', function () use ($app) {
 
   $serial->deviceOpen();
   
+  echo 'message: <i>'.join('-', $_REQUEST['msg'] ).'</i><br />'; 
+  
   $msg = $_REQUEST['msg'];
   foreach( $msg as $key => $val){
           $msg[$key] =  bindec($val);
   } 
   
-  echo join(' ', $msg ).'<br />'; 
-
   $serial->sendMessage( join(' ', $msg )  );
+  
+  echo $serial->readPort();
   
   $serial->deviceClose();
 
