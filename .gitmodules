@@ -1,0 +1,6 @@
+[submodule "lib/php_serial"]
+	path = lib/php_serial
+	url = git://gist.github.com/51342.git
+[submodule "lib/twig"]
+	path = lib/twig
+	url = git://github.com/fabpot/Twig.git

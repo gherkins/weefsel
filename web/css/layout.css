@@ -1,0 +1,66 @@
+@import 'reset.css';
+
+body{
+  background: #C3D9FF url('/images/stripes.png');
+  font-family: Arial, sans-serif;
+  color:#3F4C6B;
+  font-size:14px;
+}
+
+form{
+  background:#fff;
+  padding:10px;
+  border-radius: 0 0 10px 10px;
+}
+
+h1{
+  margin:10px 0;
+  font-family: "Arial black";
+  font-style:italic;
+}
+
+.theWrap{
+  width:960px;
+  margin:0 auto;
+}
+
+.pattern{
+  background:#fff;
+  float:left;
+  padding:10px;
+  border-radius: 10px;
+}
+
+li.shaft{
+  float:left;
+  width:15px;
+  height:15px;
+  background:#77BED2;
+  margin:0 2px 2px 0;
+}
+
+li.shaft.active{
+  background:#F2583E;
+}
+
+li.row{
+  opacity: 0.3;
+}
+
+li.row.active{
+  opacity: 1;
+}
+
+ul.shafts{
+  clear:both;
+}
+
+.clearer{
+  clear:both;
+}
+
+img.loader{
+  float:right;
+  margin:10px 20px 0 0; 
+  display:none;
+}
