@@ -45,6 +45,8 @@
           });
 
           $('img.loader').show();
+          $('.console p').html( 'transmitting data' );
+          
           $.ajax({
             type : 'POST',
             url : '/send',
@@ -70,9 +72,6 @@
   </head>
   <body>
     <div class="theWrap">
-
-      <img src="/images/ajax-loader.gif" class="loader" />
-
 
       <form action="/" enctype="multipart/form-data" method="post">
         <input type="file" name="wif_file" />
@@ -106,8 +105,11 @@
         <a id="next">next</a>
       </div>
       
-      <div class="section">
-        <span class="activeRow">none</span>
+      <div class="section full">
+        <img src="/images/ajax-loader.gif" class="loader" />
+        
+        row: <span class="activeRow">none</span><br />
+        <br />
         
         
         <div class="console">
@@ -116,6 +118,8 @@
           </p>
         </div>
       </div>
+      
+      <div class="clearer"></div>
       
       
 

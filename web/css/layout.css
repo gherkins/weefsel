@@ -1,5 +1,12 @@
 @import 'reset.css';
 
+html, 
+body,
+.theWrap,
+.section.full{
+  height:100%;
+}
+
 body{
   background: #C3D9FF url('/images/stripes.png');
   font-family: Arial, sans-serif;
@@ -46,6 +53,7 @@ a#next{
 .console p{
   font-family: monospace;
   font-size:10px;
+  width:526px;
 }
 
 a#next:hover{
