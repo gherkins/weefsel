@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../lib/silex/silex.phar';
-require_once __DIR__ . '/../lib/php_serial/php_serial.class.php';
+require_once __DIR__ . '/../lib/php-serial/php_serial.class.php';
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
