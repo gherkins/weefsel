@@ -24,17 +24,39 @@ h1{
   margin:0 auto;
 }
 
-.pattern{
+.section{
   background:#fff;
   float:left;
   padding:10px;
   border-radius: 10px;
+  margin-right: 10px;
+}
+
+a#next{
+  display:block;
+  width:200px;
+  height:200px;
+  text-align: center;
+  font-size:40px;
+  line-height: 200px;
+  background: #eee;
+  color:#eee;
+}
+
+.console p{
+  font-family: monospace;
+  font-size:10px;
+}
+
+a#next:hover{
+  background: #94F3AC;
+  cursor: pointer;
 }
 
 li.shaft{
   float:left;
-  width:10px;
-  height:10px;
+  width:5px;
+  height:5px;
   background:#77BED2;
   margin:0 1px 1px 0;
 }

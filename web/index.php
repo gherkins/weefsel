@@ -24,6 +24,8 @@ $app->error(function (\Exception $e) use ($app) {
 });
 
 
+//log error from php_serial to "console"
+set_error_handler( create_function('$a,$b','echo $b."<br />";') );
 
 
 //index / import file
@@ -71,8 +73,13 @@ $app->match('/send', function () use ($app) {
   
 //  define('SERIALPORT','/dev/tty.usbserial-A100eH8F');
   define('SERIALPORT','/dev/tty.usbmodemfd131');
-
-  $serial = new phpSerial();
+  
+  try {
+      $serial = new phpSerial();
+  } catch (Exception $e) {
+      echo 'Exception abgefangen: ',  $e->getMessage(), "\n";
+  }
+  
   //Specify the serial port to use... if yours is COM1, replace /dev/tty.usbserial-A4001nU7 below with COM1 
   $serial->deviceSet( SERIALPORT );
   //Set the serial port parameters. The documentation says 9600 8-N-1, so
@@ -95,5 +102,6 @@ $app->match('/send', function () use ($app) {
   $serial->deviceClose();
 
 });
+
 
 $app->run();
