@@ -72,7 +72,7 @@ $app->match('/', function () use ($app) {
 $app->match('/send', function () use ($app) {
   
 //  define('SERIALPORT','/dev/tty.usbserial-A100eH8F');
-  define('SERIALPORT','/dev/tty.usbmodemfd131');
+  define('SERIALPORT','/dev/ttyACM1');
   
   try {
       $serial = new phpSerial();
