@@ -18,11 +18,10 @@ $app->register(new Silex\Extension\TwigExtension(), array(
     'twig.class_path' => __DIR__ . '/../lib/twig/lib',
 ));
 
-//error handling
+//print php serial errors
 $app->error(function (\Exception $e) use ($app) {
   return $app->redirect('/');
 });
-
 
 //log error from php_serial to "console"
 set_error_handler( create_function('$a,$b','echo $b."<br />";') );
@@ -71,32 +70,36 @@ $app->match('/', function () use ($app) {
 //send to board
 $app->match('/send', function () use ($app) {
   
-//  define('SERIALPORT','/dev/tty.usbserial-A100eH8F');
+  // mac
+//  define('SERIALPORT','/dev/tty.usbmodemfd131');
+
+  // nix
   define('SERIALPORT','/dev/ttyACM0');
   
-//  echo 'port: '.SERIALPORT.'<br />';
+  echo 'status: <i>'.join('-', $_REQUEST['msg'] ).'</i> ('.SERIALPORT.')<br />'; 
   
   $serial = new phpSerial();
   
-  //Specify the serial port to use... if yours is COM1, replace /dev/tty.usbserial-A4001nU7 below with COM1 
   $serial->deviceSet( SERIALPORT );
-  //Set the serial port parameters. The documentation says 9600 8-N-1, so
+  
   $serial->confBaudRate(9600); //Baud rate: 9600
   $serial->confParity("none");  //Parity (this is the "N" in "8-N-1")
   $serial->confCharacterLength(8); //Character length (this is the "8" in "8-N-1")
   $serial->confStopBits(1);  //Stop bits (this is the "1" in "8-N-1")
 
-  $serial->deviceOpen();
-  
-  echo 'message: <i>'.join('-', $_REQUEST['msg'] ).'</i><br />'; 
+  $serial->deviceOpen(); 
   
   $msg = $_REQUEST['msg'];
   foreach( $msg as $key => $val){
           $msg[$key] =  bindec($val);
   } 
   
-  $serial->sendMessage( join(' ', $msg )  );
+  echo '<br /><br />mission control says: <br />';
+  echo join(' ', $msg )."<br />";
   
+  $serial->sendMessage( join(' ', $msg )."\r\n"  );
+  
+//  echo '<br /><br />loom says: <br />';
 //  echo $serial->readPort();
   
   $serial->deviceClose();
