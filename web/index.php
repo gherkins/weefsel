@@ -72,13 +72,11 @@ $app->match('/', function () use ($app) {
 $app->match('/send', function () use ($app) {
   
 //  define('SERIALPORT','/dev/tty.usbserial-A100eH8F');
-  define('SERIALPORT','/dev/ttyACM1');
+  define('SERIALPORT','/dev/ttyACM0');
   
-  try {
-      $serial = new phpSerial();
-  } catch (Exception $e) {
-      echo 'Exception abgefangen: ',  $e->getMessage(), "\n";
-  }
+  echo 'sending to: '.SERIALPORT.'<br />';
+  
+  $serial = new phpSerial();
   
   //Specify the serial port to use... if yours is COM1, replace /dev/tty.usbserial-A4001nU7 below with COM1 
   $serial->deviceSet( SERIALPORT );
@@ -95,7 +93,7 @@ $app->match('/send', function () use ($app) {
           $msg[$key] =  bindec($val);
   } 
   
-//  echo var_dump( join(' ', $msg ) ); 
+  echo join(' ', $msg ).'<br />'; 
 
   $serial->sendMessage( join(' ', $msg )  );
   
